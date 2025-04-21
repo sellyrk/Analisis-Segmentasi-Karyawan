@@ -52,40 +52,40 @@ df.info()
 Dari hasil informasi
 Data terdiri dari 35 kolom dan 1470 baris, data berisi data demografi karyawan, yang terdiri dari kolom-kolom, yaitu:
 
-EmployeeId - ID Karyawan
-Attrition - Apakah terjadi pengurangan karyawan? (0 = tidak, 1 = ya)
-Age - Usia karyawan
-BusinessTravel - Keterlibatan perjalanan untuk pekerjaan
-DailyRate - Gaji harian
-Department - Departemen Karyawan
-DistanceFromHome - Jarak dari tempat kerja ke rumah (dalam km)
-Education - 1-Sekolah Menengah Pertama, 2-Sekolah Menengah Atas, 3-Sarjana, 4-Sarjana, 5-Doktor
-EducationField - Bidang Pendidikan
-EnvironmentSatisfactionn - 1-Rendah, 2-Sedang, 3-Tinggi, 4-Sangat Tinggi
-Gender - Jenis kelamin karyawan
-HourlyRate - Gaji per jam
-JobInvolvement - 1-Rendah, 2-Sedang, 3-Tinggi, 4-Sangat Tinggi
-JobLevel - Tingkat pekerjaan (1 hingga 5)
-JobRole - Peran Pekerjaan
-JobSatisfaction - 1-Rendah, 2-Sedang, 3-Tinggi, 4-Sangat Tinggi
-MaritalStatus - Status Perkawinan
-MonthlyIncome - Gaji bulanan
-MonthlyRate - Tarif per bulan
-NumCompaniesWorked - Banyaknya perusahaan tempat bekerja
-Over18 - Berusia di atas 18 tahun?
-OverTime - Lembur?
-PercentSalaryHike - Persentase kenaikan gaji tahun lalu
-PerformanceRating - 1-Rendah, 2-Baik, 3-SangatBaik, 4-LuarBiasa
-RelationshipSatisfaction - 1-Rendah, 2-Sedang, 3-Tinggi, 4-Sangat Tinggi
-StandardHours - Jam Kerja Standar
-StockOptionLevel - Tingkat Opsi Saham
-TotalWorkingYears - Lama bekerja - Total tahun bekerja
-TrainingTimesLastYear - Jumlah training yang diikuti tahun lalu
-WorkLifeBalance - 1-Rendah, 2-Baik, 3-Sangat Baik, 4-Sangat Baik
-YearsAtCompany - Lama Bekerja di Perusahaan - Tahun di Perusahaan
-YearsInCurrentRole - Lama bekerja dalam jabatan saat ini
-YearsSinceLastPromotion - Lama sejak promosi terakhir
-YearsWithCurrManager - Lama bekerja dengan manajer saat ini
+- EmployeeId - ID Karyawan
+- Attrition - Apakah terjadi pengurangan karyawan? (0 = tidak, 1 = ya)
+- Age - Usia karyawan
+- BusinessTravel - Keterlibatan perjalanan untuk pekerjaan
+- DailyRate - Gaji harian
+- Department - Departemen Karyawan
+- DistanceFromHome - Jarak dari tempat kerja ke rumah (dalam km)
+- Education - 1-Sekolah Menengah Pertama, 2-Sekolah Menengah Atas, 3-Sarjana, 4-Sarjana, 5-Doktor
+- EducationField - Bidang Pendidikan
+- EnvironmentSatisfactionn - 1-Rendah, 2-Sedang, 3-Tinggi, 4-Sangat Tinggi
+- Gender - Jenis kelamin karyawan
+- HourlyRate - Gaji per jam
+- JobInvolvement - 1-Rendah, 2-Sedang, 3-Tinggi, 4-Sangat Tinggi
+- JobLevel - Tingkat pekerjaan (1 hingga 5)
+- JobRole - Peran Pekerjaan
+- JobSatisfaction - 1-Rendah, 2-Sedang, 3-Tinggi, 4-Sangat Tinggi
+- MaritalStatus - Status Perkawinan
+- MonthlyIncome - Gaji bulanan
+- MonthlyRate - Tarif per bulan
+- NumCompaniesWorked - Banyaknya perusahaan tempat bekerja
+- Over18 - Berusia di atas 18 tahun?
+- OverTime - Lembur?
+- PercentSalaryHike - Persentase kenaikan gaji tahun lalu
+- PerformanceRating - 1-Rendah, 2-Baik, 3-SangatBaik, 4-LuarBiasa
+- RelationshipSatisfaction - 1-Rendah, 2-Sedang, 3-Tinggi, 4-Sangat Tinggi
+- StandardHours - Jam Kerja Standar
+- StockOptionLevel - Tingkat Opsi Saham
+- TotalWorkingYears - Lama bekerja - Total tahun bekerja
+- TrainingTimesLastYear - Jumlah training yang diikuti tahun lalu
+- WorkLifeBalance - 1-Rendah, 2-Baik, 3-Sangat Baik, 4-Sangat Baik
+- YearsAtCompany - Lama Bekerja di Perusahaan - Tahun di Perusahaan
+- YearsInCurrentRole - Lama bekerja dalam jabatan saat ini
+- YearsSinceLastPromotion - Lama sejak promosi terakhir
+- YearsWithCurrManager - Lama bekerja dengan manajer saat ini
 
 ### Data Preparation / Preprocessing
 1. Dalam hal ini dilakukan penghapusan nilai kosong yang ada pada Attrition dengan menghapus baris-baris kosong yang ada. Setelah menghapus nilai yang kosong, dilakukan pemeriksaan data terduplikasi, namun ternyata data bebas dari duplikasi.
