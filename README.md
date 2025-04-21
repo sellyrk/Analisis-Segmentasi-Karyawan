@@ -32,9 +32,11 @@ import scipy.stats as stats
 import sklearn
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
+
 # model dan evaluasi
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
+
 # simpan model
 import joblib
 ```
@@ -49,6 +51,7 @@ df.info()
 ```
 Dari hasil informasi
 Data terdiri dari 35 kolom dan 1470 baris, data berisi data demografi karyawan, yang terdiri dari kolom-kolom, yaitu:
+
 EmployeeId - ID Karyawan
 Attrition - Apakah terjadi pengurangan karyawan? (0 = tidak, 1 = ya)
 Age - Usia karyawan
@@ -94,26 +97,36 @@ YearsWithCurrManager - Lama bekerja dengan manajer saat ini
 1. Mengetahui statistik deskriptif data
 Secara keseluruhan, statistik deskriptif data dari tabel di atas, rentang usia karyawan yaitu dari 18-60 tahun, rata-rata jarak rumah karyawan berada di sekitar 8.9km, gaji karyawan berkisar antara 1009 hingga 19999, dan lain-lain.
 3. Memeriksa distribusi numerik
+   
    ![image](https://github.com/user-attachments/assets/8906c1fc-a2f7-4ddc-95ef-896bec644c13)
+
 Dari grafik di atas, dapat dilihat bahwa selain age, semua fitur numerik memiliki distribusi yang skewed (berbentuk right-skewed distribution)
-4. Memeriksa distribusi kategorik
+5. Memeriksa distribusi kategorik
+
    ![image](https://github.com/user-attachments/assets/7a223e5d-12a6-4bfc-b037-94b4c406f762)
+
 Dapat dilihat bahwa kebanyakan departemen berasal dari departemen 1 (Research & Development). Karyawan juga banyak yang memiliki kepuasan kerja yang sangat tinggi. Selain itu, karyawan didominasi oleh pria, dan keterlibatan pekerjaan berada di tingkat yang tinggi (3), terakhir karyawan masih banyak yang bukan senior.
-5. Memeriksa fitur kategorik dan pengaruhnya pada 'Overtime'
+7. Memeriksa fitur kategorik dan pengaruhnya pada 'Overtime'
+  
    ![image](https://github.com/user-attachments/assets/d42feba4-1df9-4791-be22-945876d9995a)
+
 Berdasarkan dari pengambilan lembur, departemen 1 (Research & Development), mengambil paling banyak dari semua karyawan, karyawan yang puas terhadap lingkungan dan pekerjaan cenderung tidak mengambil lembur, bgeitupun yang memiliki keseimbangan pola kehidupan kerja yang baik. Karyawan pria dan wanita cenderung hampir sama. Karyawan yang memiliki keterlibatan pekerjaan tinggi juga tidak mengambil lembur, dan karyawan senior juga tidak banyak yang mengambil lembur.
-6. Analisis korelasi fitur numerik
+8. Analisis korelasi fitur numerik
+  
    ![image](https://github.com/user-attachments/assets/e361ee28-bc50-4b0c-8f8a-5fce849e2afd)
+
 Dari hasil heatmap, dapat dilihat jika fitur YearsAtCompany dan YearsInCurrentRole memiliki korelasi tertinggi sebesar 0.76, begitu juga dengan YearsAtCompany dan YearsSinceLastPromotion 0.62. Ketiga fitur ini memiliki informasi yang hampir sama. Korelasi terendah ke semua kolom adalah DistanceFromHome, sehingga kolom ini tidak begitu berpengaruh pada variabel lainnya.
-7. Seleksi fitur
+9. Seleksi fitur
 Hasil dari proses EDA seluruhnya, beberapa fitur perlu dihapus karena tidak berpengaruh besar, seperti Gender yang cenderung netral saat membentuk distribusi, DistanceFromHome yang berkorelasi rendah dengan variabel lain, YearsInCurrentRole dan YearsSinceLastPromotion yang redundant, sehingga hanya mempertahankan YearsAtCompany saja.
-8. Standarisasi
+10. Standarisasi
 Tahap ini dilakukan untuk menyamakan skala data supaya memudahkan dalam tahap pemodelan nantinya. Karena sebelumnya, juga terdapat kmeiirngan data ke kanan, maka data yang miring ke kanan seperti MonthlyIncome dan YearsAtCompany (keduanya numerik) akan dialkukan log transform untuk mengatasinya
 
 ### Modelling
 Sebelum pemodelan, dilakukan perhitungan nilai k (jumlah klaster terbaik) dengan elbow method dan silhoutte.
+
 ![image](https://github.com/user-attachments/assets/466d1f47-af68-47c2-8c82-474de4b89536)
 ![image](https://github.com/user-attachments/assets/593d9db2-a799-42c1-ad73-2fe3afd6b40e)
+
 Hasil elbow method dan silhouttte menunjukkan bahwa k terbaik berada di angka 3. Sehingga, hasil k palimg baik adalah 3 klaster. Model dibuat dengan k = 3 menggunakan KMeans dan disimpan menggunakan joblib.
 ```
 K = 3
@@ -133,16 +146,20 @@ fix_df
 
 ### Evaluasi
 1. Visualisasi distribusi klaster
+
    ![image](https://github.com/user-attachments/assets/0493de9b-15a5-4cb6-b22a-19b7583e3b3c)
+
 Terlihat jika distribusi klaster paling tinggi adalah klaster 2, jumlah klaster 2 hampir sama dengan klaster 0. Sementara, klaster terendah yaitu di cluster 1
-2. Penggabungan hasil klaster dengan ```main_df``` sebelumnya untuk analisis lebih lanjut.
+3. Penggabungan hasil klaster dengan ```main_df``` sebelumnya untuk analisis lebih lanjut.
 ```result_df.groupby('Cluster').mean(numeric_only=True)```
 Sehingga menghasilkan seperti ini:
+
 |Cluster|EmployeeId|Age|Department|DistanceFromHome|EnvironmentSatisfaction|Gender|JobSatisfaction|OverTime|MonthlyIncome|PerformanceRating|YearsAtCompany|YearsInCurrentRole|YearsSinceLastPromotion|WorkLifeBalance|JobInvolvement|IsSenior|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |0|742\.3325892857143|32\.433035714285715|1\.0424107142857142|8\.732142857142858|2\.6651785714285716|0\.6183035714285714|2\.841517857142857|0\.27455357142857145|3189\.0379464285716|3\.1875|3\.533482142857143|2\.2433035714285716|0\.9955357142857143|2\.732142857142857|2\.720982142857143|0\.0|
 |1|738\.7333333333333|47\.68888888888889|1\.2|7\.777777777777778|2\.8074074074074074|0\.562962962962963|2\.7111111111111112|0\.2962962962962963|17012\.792592592592|3\.111111111111111|14\.42962962962963|6\.62962962962963|4\.7481481481481485|2\.785185185185185|2\.7777777777777777|1\.0|
 |2|730\.7136842105264|38\.39368421052632|1\.4947368421052631|9\.551578947368421|2\.7305263157894735|0\.5621052631578948|2\.6736842105263157|0\.3031578947368421|6915\.44|3\.126315789473684|8\.303157894736842|5\.490526315789474|2\.6189473684210527|2\.7873684210526317|2\.741052631578947|0\.0|
+
 Dari hasil rata-rata, dapat dilihat jika
 
 - Klaster 1 rata-rata karyawannya berusia sekitar 47 tahun, klaster 2 berada di 38 tahun dan klaster 0 termuda di angka 32 tahun.
