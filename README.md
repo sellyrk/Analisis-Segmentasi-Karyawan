@@ -96,29 +96,35 @@ Data terdiri dari 35 kolom dan 1470 baris, data berisi data demografi karyawan, 
 ### Exploratory Data Analysis
 1. Mengetahui statistik deskriptif data
 Secara keseluruhan, statistik deskriptif data dari tabel di atas, rentang usia karyawan yaitu dari 18-60 tahun, rata-rata jarak rumah karyawan berada di sekitar 8.9km, gaji karyawan berkisar antara 1009 hingga 19999, dan lain-lain.
-3. Memeriksa distribusi numerik
+
+2. Memeriksa distribusi numerik
    
    ![image](https://github.com/user-attachments/assets/8906c1fc-a2f7-4ddc-95ef-896bec644c13)
 
 Dari grafik di atas, dapat dilihat bahwa selain age, semua fitur numerik memiliki distribusi yang skewed (berbentuk right-skewed distribution)
-5. Memeriksa distribusi kategorik
+
+3. Memeriksa distribusi kategorik
 
    ![image](https://github.com/user-attachments/assets/7a223e5d-12a6-4bfc-b037-94b4c406f762)
 
 Dapat dilihat bahwa kebanyakan departemen berasal dari departemen 1 (Research & Development). Karyawan juga banyak yang memiliki kepuasan kerja yang sangat tinggi. Selain itu, karyawan didominasi oleh pria, dan keterlibatan pekerjaan berada di tingkat yang tinggi (3), terakhir karyawan masih banyak yang bukan senior.
-7. Memeriksa fitur kategorik dan pengaruhnya pada 'Overtime'
+
+4. Memeriksa fitur kategorik dan pengaruhnya pada 'Overtime'
   
    ![image](https://github.com/user-attachments/assets/d42feba4-1df9-4791-be22-945876d9995a)
 
 Berdasarkan dari pengambilan lembur, departemen 1 (Research & Development), mengambil paling banyak dari semua karyawan, karyawan yang puas terhadap lingkungan dan pekerjaan cenderung tidak mengambil lembur, bgeitupun yang memiliki keseimbangan pola kehidupan kerja yang baik. Karyawan pria dan wanita cenderung hampir sama. Karyawan yang memiliki keterlibatan pekerjaan tinggi juga tidak mengambil lembur, dan karyawan senior juga tidak banyak yang mengambil lembur.
-8. Analisis korelasi fitur numerik
+
+5. Analisis korelasi fitur numerik
   
    ![image](https://github.com/user-attachments/assets/e361ee28-bc50-4b0c-8f8a-5fce849e2afd)
 
 Dari hasil heatmap, dapat dilihat jika fitur YearsAtCompany dan YearsInCurrentRole memiliki korelasi tertinggi sebesar 0.76, begitu juga dengan YearsAtCompany dan YearsSinceLastPromotion 0.62. Ketiga fitur ini memiliki informasi yang hampir sama. Korelasi terendah ke semua kolom adalah DistanceFromHome, sehingga kolom ini tidak begitu berpengaruh pada variabel lainnya.
-9. Seleksi fitur
+
+6. Seleksi fitur
 Hasil dari proses EDA seluruhnya, beberapa fitur perlu dihapus karena tidak berpengaruh besar, seperti Gender yang cenderung netral saat membentuk distribusi, DistanceFromHome yang berkorelasi rendah dengan variabel lain, YearsInCurrentRole dan YearsSinceLastPromotion yang redundant, sehingga hanya mempertahankan YearsAtCompany saja.
-10. Standarisasi
+
+8. Standarisasi
 Tahap ini dilakukan untuk menyamakan skala data supaya memudahkan dalam tahap pemodelan nantinya. Karena sebelumnya, juga terdapat kmeiirngan data ke kanan, maka data yang miring ke kanan seperti MonthlyIncome dan YearsAtCompany (keduanya numerik) akan dialkukan log transform untuk mengatasinya
 
 ### Modelling
@@ -150,7 +156,8 @@ fix_df
    ![image](https://github.com/user-attachments/assets/0493de9b-15a5-4cb6-b22a-19b7583e3b3c)
 
 Terlihat jika distribusi klaster paling tinggi adalah klaster 2, jumlah klaster 2 hampir sama dengan klaster 0. Sementara, klaster terendah yaitu di cluster 1
-3. Penggabungan hasil klaster dengan ```main_df``` sebelumnya untuk analisis lebih lanjut.
+
+2. Penggabungan hasil klaster dengan ```main_df``` sebelumnya untuk analisis lebih lanjut.
 ```result_df.groupby('Cluster').mean(numeric_only=True)```
 Sehingga menghasilkan seperti ini:
 
@@ -166,14 +173,23 @@ Dari hasil rata-rata, dapat dilihat jika
 - Klaster 1 memiliki kepuasan lingkungan tertinggi dibanding lainnya, sementara kepuasan lingkungan terendah oleh klaster 0.
 - Lembur paling banyak diambil oleh klaster 2. Namun, gaji tertinggi dimiliki oleh klaster 1, ini sejalan dengan lama tahun di perusahaan, klaster 1 paling lama yaitu rata-rata 6 tahun. Didukung memang hanya klaster 1 yang rata-ratanya karyawan senior.
 - Sementara itu, rating performa karyawan dimana klaster 0 memiliki rating terbaik.
+- 
 3. Visualisasi pengambilan lembur per klaster
-  ![image](https://github.com/user-attachments/assets/055e75dc-b2f5-4171-a423-d226f0e34e41)
+
+   ![image](https://github.com/user-attachments/assets/055e75dc-b2f5-4171-a423-d226f0e34e41)
+
 Terlihat jika banyak dari klaster 2 yang mengambil lembur, sementara yang paling banyak tidak mengambil lembur juga klaster 1
+
 4. Visualisasi gaji bulanan per klaster
+ 
   ![image](https://github.com/user-attachments/assets/f1677313-e5ec-4164-9aa8-1699f752479a)
+
 Terlihat dari boxplot, klaster 1 memiliki gaji bulanan paling banyak, sementara klaster 0 memiliki gaji yang paling sedikit, klaster 2 berada di atas klaster 0 sedikit lebih tinggi
+
 5. Visualisasi kategori lain per klaster
+ 
   ![image](https://github.com/user-attachments/assets/583c606b-2004-4194-ae22-8de6d9784f39)
+
 Dari hasil visualisasi di atas,
 - klaster 0 didominasi oleh departemen 1,
 - seluruh klaster jika dirata-rata, puas dengan lingkungan dan pekerjaan mereka,
