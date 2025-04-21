@@ -185,6 +185,7 @@ karyawan senior paling banyak di klaster 1.
 
 Jelaskan tentang business dashboard yang telah dibuat. Jika ada, sertakan juga link untuk mengakses dashboard tersebut.
 http://localhost:3000/public/dashboard/4bb35cd1-5a74-4762-8d7a-8294433e151f
+username: sellyrizkiyah01@gmail.com password: selly140#
 
 ## Conclusion
 Proyek ini berhasil membagi karyawan Perusahaan Jaya Jaya Maju menjadi beberapa segmen (cluster) berdasarkan karakteristik penting seperti usia, pendapatan, lama bekerja, tingkat kepuasan kerja, keterlibatan, dan pola lembur. Dengan menggunakan metode unsupervised learning (clustering), ditemukan pola-pola unik yang dapat dimanfaatkan perusahaan untuk sehingga menghasilkan interpretasi setiap klaster yaitu:
